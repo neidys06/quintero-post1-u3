@@ -253,3 +253,11 @@ textarea { resize: vertical; min-height: 120px; }
 }
 .btn-primary:hover  { background: var(--color-secondary); }
 .btn-primary:active { transform: scale(0.98); }
+
+.site-footer {
+  text-align : center;
+  padding    : var(--space-lg);
+  background : var(--color-dark);
+  color      : var(--color-white);
+  font-size  : 0.85rem;
+}
