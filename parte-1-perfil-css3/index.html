@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil — Neidys Mariana Quintero Carrillo</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="logo">Mi Portafolio</span>
+      <nav class="main-nav">
+        <a href="#perfil">Perfil</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="perfil" class="profile-section">
+      <div class="profile-card">
+        <div class="avatar-wrapper">
+          <img src="img/perfil.jpeg" alt="Foto de perfil" class="avatar">
+          <span class="badge">CSS3</span>
+        </div>
+        <div class="profile-info">
+          <h1 class="profile-name">Neidys Mariana Quintero Carrillo</h1>
+          <p class="profile-title">Estudiante de Ingeniería de Sistemas</p>
+          <p class="profile-bio"> Estudiante de séptimo semestre de Ingeniería de Sistemas en la Universidad Francisco de Paula Santander, con interés en el desarrollo de software, la programación y las bases de datos. Se caracteriza por ser una persona responsable, organizada y comprometida con su formación académica. Está orientada al aprendizaje continuo y al fortalecimiento de sus conocimientos y habilidades en el área de la tecnología, con disposición para asumir nuevos retos y adquirir experiencia en el ámbito profesional.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades" class="skills-section">
+      <h2 class="section-title">Habilidades</h2>
+      <ul class="skills-list">
+        <li class="skill-item skill-item--html">HTML5</li>
+        <li class="skill-item skill-item--css">CSS3</li>
+        <li class="skill-item skill-item--js">JavaScript</li>
+        <li class="skill-item skill-item--java">Java</li>
+      </ul>
+    </section>
+
+    <section id="contacto" class="contact-section">
+      <h2 class="section-title">Contacto</h2>
+      <form class="contact-form" novalidate>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Su nombre completo" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escriba su mensaje..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Enviar mensaje</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 — Neidys Mariana Quintero Carrillo</p>
+  </footer>
+</body>
+</html>
