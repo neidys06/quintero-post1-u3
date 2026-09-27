@@ -1,0 +1,255 @@
+/* ── Reset global ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables CSS (Custom Properties) ── */
+:root {
+  --color-primary   : #065A82;
+  --color-secondary : #1C7293;
+  --color-dark      : #21295C;
+  --color-text      : #000000;
+  --color-grey      : #808080;
+  --color-highlight : #E8F4F8;
+  --color-bg        : #F5F5F5;
+  --color-white     : #FFFFFF;
+  --font-base       : "Arial", Helvetica, sans-serif;
+  --radius          : 6px;
+  --shadow          : 0 2px 12px rgba(0,0,0,0.1);
+  --color-error: #C62828;
+
+  /* Escala de espaciado — usar SIEMPRE una de estas en vez de un rem suelto */
+  --space-3xs : 0.25rem;
+  --space-2xs : 0.5rem;
+  --space-xs  : 0.75rem;
+  --space-sm  : 1rem;
+  --space-md  : 1.25rem;
+  --space-lg  : 1.5rem;
+  --space-xl  : 2rem;
+  --space-2xl : 3rem;
+  --space-3xl : 4rem;
+}
+/* ── Estado de validación: Estrategia A ──*/
+input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-error);
+}
+/* ── Base documento ── */
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family : var(--font-base);
+  font-size   : 1rem;
+  line-height : 1.6;
+  color       : var(--color-text);
+  background  : var(--color-bg);
+}
+
+/* ── Contenedor centrado ── */
+.container { max-width: 960px; width: 90%; margin: 0 auto; }
+
+/* ── Header fijo ── */
+.site-header {
+  position    : fixed;
+  top         : 0;
+  left        : 0;
+  width       : 100%;
+  background  : var(--color-primary);
+  z-index     : 100;
+  box-shadow  : var(--shadow);
+}
+
+.header-inner {
+  max-width       : 960px;
+  width           : 90%;
+  margin          : 0 auto;
+  padding         : var(--space-xs) 0;   /* 0.8rem normalizado a --space-xs (0.75rem) */
+  display         : flex;        /* se retomará en profundidad en la Parte 2 */
+  justify-content : space-between;
+  align-items     : center;
+}
+
+.logo {
+  color       : var(--color-white);
+  font-size   : 1.2rem;
+  font-weight : 700;
+  letter-spacing: 0.05em;
+}
+
+.main-nav a {
+  color           : var(--color-white);
+  text-decoration : none;
+  margin-left     : var(--space-lg);
+  font-size       : 0.95rem;
+  transition      : opacity 0.2s;
+}
+.main-nav a:hover { opacity: 0.75; }
+
+/* Compensar header fijo: el contenido no queda tapado */
+main { padding-top: 70px; }
+
+/* ── Sección perfil ── */
+.profile-section {
+  padding    : var(--space-3xl) 0 var(--space-2xl);
+  background : var(--color-white);
+}
+
+.profile-card {
+  max-width  : 960px;
+  width      : 90%;
+  margin     : 0 auto;
+  display    : flex;
+  gap        : var(--space-xl);     /* 2.5rem normalizado a --space-xl (2rem) */
+  align-items: center;
+}
+
+/* Contexto de posicionamiento para el badge */
+.avatar-wrapper {
+  position   : relative;         /* establece contexto de posicionamiento */
+  /* Se eligió position: relative en .avatar-wrapper (en vez de aplicar
+     absolute directamente sobre .profile-card) para que el contexto de
+     posicionamiento del badge quede acotado al avatar mismo: así el badge
+     se mueve junto con el avatar si la tarjeta cambia de layout, sin
+     depender de la posición de otros elementos hermanos como el texto. */
+  flex-shrink: 0;
+}
+
+.avatar {
+  width         : 160px;
+  height        : 160px;
+  border-radius : 50%;
+  object-fit    : cover;
+  border        : 4px solid var(--color-primary);
+  display       : block;
+}
+
+/* Badge posicionado absolutamente respecto a .avatar-wrapper */
+.badge {
+  position    : absolute;
+  bottom      : 4px;
+  right       : 4px;
+  background  : var(--color-secondary);
+  color       : var(--color-white);
+  font-size   : 0.7rem;
+  font-weight : 700;
+  padding     : 2px 8px;
+  border-radius: var(--radius);
+}
+
+/* Tipografía fluida: crece entre 1.5rem y 2.5rem según el ancho de viewport.
+   Se prefiere clamp() sobre fijar 2rem y ajustar con @media porque evita
+   el salto brusco de tamaño en el breakpoint y elimina una regla @media
+   completa solo para este valor. */
+.profile-name  { font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem); color: var(--color-primary); margin-bottom: var(--space-3xs); }
+.profile-title { color: var(--color-secondary); font-weight: 700; margin-bottom: var(--space-xs); }
+.profile-bio   { color: var(--color-text); max-width: 55ch; }
+
+.skills-section {
+  padding    : var(--space-2xl) 0;
+  background : var(--color-bg);
+}
+
+/* Selector descendente: .section-title dentro de cualquier sección */
+.skills-section .section-title,
+.contact-section .section-title {
+  font-size     : 1.75rem;
+  color         : var(--color-primary);
+  margin-bottom : var(--space-lg);
+  max-width     : 960px;
+  width         : 90%;
+  margin-left   : auto;
+  margin-right  : auto;
+}
+
+.skills-list {
+  list-style    : none;
+  display       : flex;
+  gap           : var(--space-sm);
+  flex-wrap     : wrap;
+  max-width     : 960px;
+  width         : 90%;
+  margin        : 0 auto;
+}
+
+/* Estilos base para todos los skill items.
+   Se eligió el combinador de hijo directo (>) en vez del selector
+   descendente (.skills-list .skill-item) a propósito: si en el futuro se
+   agrupan skills en sub-listas (por ejemplo, "Frontend" / "Backend"), el
+   hijo directo solo afecta a los <li> pegados a .skills-list y no a los de
+   esas sub-listas anidadas, mientras que el descendente los afectaría a
+   todos por igual. */
+.skills-list > .skill-item {       /* selector hijo directo */
+  padding       : var(--space-2xs) var(--space-md);
+  border-radius : 2rem;
+  font-weight   : 700;
+  font-size     : 0.9rem;
+  cursor        : default;
+  transition    : transform 0.15s ease;
+}
+.skills-list > .skill-item:hover { transform: translateY(-2px); }
+
+/* Modificadores BEM: color por habilidad */
+.skill-item--html  { background: #F0F0F0; color: #C62828; border: 2px solid #C62828; }
+.skill-item--css   { background: #E8F4F8; color: #065A82; border: 2px solid #065A82; }
+.skill-item--js    { background: #FFF8E1; color: #F57F17; border: 2px solid #F57F17; }
+.skill-item--java  { background: #E8F5E9; color: #2E7D32; border: 2px solid #2E7D32; }
+
+.contact-section {
+  padding    : var(--space-2xl) 0 var(--space-3xl);
+  background : var(--color-white);
+}
+
+.contact-form {
+  max-width : 560px;
+  width     : 90%;
+  margin    : 0 auto;
+}
+
+.form-group { margin-bottom: var(--space-md); }
+
+.form-group label {
+  display       : block;
+  font-weight   : 700;
+  font-size     : 0.9rem;
+  color         : var(--color-primary);
+  margin-bottom : var(--space-2xs);   /* 0.4rem normalizado a --space-2xs (0.5rem) */
+}
+
+/* Selector de atributo: solo inputs de texto y email */
+input[type="text"],
+input[type="email"],
+textarea {
+  width           : 100%;
+  padding         : var(--space-xs);   /* 0.6rem/0.8rem normalizados a --space-xs (0.75rem) en ambos ejes */
+  border          : 1px solid var(--color-grey);
+  border-radius   : var(--radius);
+  font-family     : inherit;
+  font-size       : 1rem;
+  color           : var(--color-text);
+  background      : var(--color-white);
+  transition      : border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Pseudo-clase :focus para accesibilidad */
+input:focus, textarea:focus {
+  outline    : none;
+  border-color: var(--color-primary);
+  box-shadow : 0 0 0 3px rgba(6, 90, 130, 0.2);
+}
+
+/* Pseudo-elemento ::placeholder */
+::placeholder { color: var(--color-grey); font-style: italic; }
+
+textarea { resize: vertical; min-height: 120px; }
+
+.btn-primary {
+  display         : block;
+  width           : 100%;
+  padding         : var(--space-xs);
+  background      : var(--color-primary);
+  color           : var(--color-white);
+  border          : none;
+  border-radius   : var(--radius);
+  font-size       : 1rem;
+  font-weight     : 700;
+  cursor          : pointer;
+  transition      : background-color 0.2s, transform 0.1s;
+}
+.btn-primary:hover  { background: var(--color-secondary); }
+.btn-primary:active { transform: scale(0.98); }
