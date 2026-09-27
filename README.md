@@ -30,7 +30,7 @@ con estados `:focus` y validación `:invalid`. Ver `parte-1-perfil-css3/`.
 Se verificó en DevTools que el Box Model global respeta `border-box`, por lo
 que padding y border no aumentan el ancho/alto declarado de los elementos.
 
-![Box model border-box](parte-1-perfil-css3/captures/chk1.png)
+![Box model border-box](parte-1-perfil-css3/capturas/chk1.png)
 
 ### Tarjeta de perfil — posicionamiento y tipografía fluida
 
@@ -38,13 +38,13 @@ El badge "CSS3" se posiciona con `absolute` respecto a `.avatar-wrapper`, que
 actúa como contexto con `position: relative`. Esto se confirmó inspeccionando
 el elemento en DevTools:
 
-![Avatar wrapper position relative](parte-1-perfil-css3/captures/chk2-1.png)
+![Avatar wrapper position relative](parte-1-perfil-css3/capturas/chk2-1.png)
 
 Además, el nombre de perfil usa `clamp()` para escalar de forma fluida entre
 375px y 1440px sin saltos abruptos. Se probó reduciendo el viewport con
 DevTools:
 
-![Vista responsiva 375px](parte-1-perfil-css3/captures/chk2-2.png)
+![Vista responsiva 375px](parte-1-perfil-css3/capturas/chk2-2.png)
 
 ### Vista completa — perfil y habilidades
 
@@ -52,14 +52,14 @@ La página completa en escritorio, mostrando el header fijo, la tarjeta de
 perfil, y las etiquetas de habilidades con la nomenclatura BEM (`.skill-item--html`,
 `.skill-item--css`, etc.), cada una con su color propio:
 
-![Perfil completo escritorio](parte-1-perfil-css3/captures/chk3.png)
+![Perfil completo escritorio](parte-1-perfil-css3/capturas/chk3.png)
 
 ### Formulario de contacto — estados de foco accesibles
 
 Al hacer clic en cualquier campo, el borde cambia de color y aparece el ring
 de foco translúcido, cumpliendo con el requisito de accesibilidad del Paso 7:
 
-![Formulario focus](parte-1-perfil-css3/captures/chk4.png)
+![Formulario focus](parte-1-perfil-css3/capturas/chk4.png)
 
 ### Validación `:invalid` — decisión de especificidad
 
@@ -86,7 +86,7 @@ La siguiente captura muestra el campo de correo con valor inválido, el borde
 en rojo (`--color-error: #C62828`), y en el panel Styles de DevTools se
 confirma que ninguna declaración usa `!important`:
 
-![Estado invalid con color de error](parte-1-perfil-css3/captures/chk5.png)
+![Estado invalid con color de error](parte-1-perfil-css3/capturas/chk5.png)
 
 ---
 
